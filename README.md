@@ -92,11 +92,6 @@ For a detailed explanation of the project, system architecture, and a full walkt
 
 ---
 
-### 📱 Quick App Preview
-*If you have a short screen recording (MP4/GIF), you can drag and drop it here to show a quick preview of the app interface.*
-
----
-
 
 
 ## Author
