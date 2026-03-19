@@ -1,29 +1,19 @@
-# React Native Animation
+# FloraScan: Flower Species Recognition Mobile Application 🌸
 
-This repository is a collection of results from the React Native Animation Tutorial on my YouTube Channel [Rakha Wibowo](https://www.youtube.com/@rakhawibowo) using :
+**FloraScan** is an innovative mobile application designed to bridge the gap between nature and technology. By leveraging **Deep Learning (CNN)**, the app enables users to identify various flower species and access detailed botanical information instantly through their smartphone camera.
 
-- [React Native](https://reactnative.dev/)
-- [Reanimated](https://docs.swmansion.com/react-native-reanimated/)
-- [React Native Gesture Handler](https://docs.swmansion.com/react-native-gesture-handler/docs/)
-- [React Native Skia](https://shopify.github.io/react-native-skia/)
-- [React Three Fiber](https://github.com/lottie-react-native/lottie-react-native)
-- [Moti](https://moti.fyi/)
+---
 
-This project uses react-native-bars to make the Status Bar and Navigation Bar on Android transparent
+## 📖 Table of Contents
+* [Overview](#-overview)
+* [Key Features](#-key-features)
+* [Tech Stack](#-tech-stack)
+* [System Architecture](#-system-architecture)
+* [Dataset & AI Model](#-dataset--ai-model)
+* [Installation](#-installation)
+* [Author](#-author)
 
-## Version
-
-The version used in this repository:
-
-- Expo v53.0.9
-- React Native v0.79.5
-- Reanimated v3.17.4
-- React Native Gesture Handler v2.24.0
-- Moti v0.29.0
-- React Three Fiber v9.1.4
-- React Three Drei v10.2.0
-- Three.js v0.177.0
-- Skia v2.0.0
+---
 
 
 ## Run Locally
@@ -51,3 +41,15 @@ Start the app
 ```bash
 npx expo start -c
 ```
+
+
+## Author
+
+👤 **Nassoreen Langah**
+
+- Github: [@nassoreen](https://github.com/nassoreen)
+
+
+## 📝 License
+
+This project is for educational purposes as part of a Senior Project.
