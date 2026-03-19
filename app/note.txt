@@ -1,0 +1,191 @@
+import { router } from "expo-router";
+import { StatusBar } from "expo-status-bar";
+import React from "react";
+import {
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { SafeAreaView } from "react-native-safe-area-context";
+
+const Home = () => {
+  return (
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <SafeAreaView style={styles.container}>
+        <StatusBar animated style="dark" />
+
+        <View style={styles.centerContent}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => router.push("/3dModel")}  // ✅ ใช้ "/3dModel"
+          >
+            <Text style={styles.buttonText}>
+              🚀 Load 3D Model With React Three Fiber
+            </Text>
+          </TouchableOpacity>
+
+        </View>
+      </SafeAreaView>
+    </GestureHandlerRootView>
+  );
+};
+
+export default Home;
+
+const styles = StyleSheet.create({
+  container: { flex: 1, backgroundColor: "#F6F6F6" },
+  centerContent: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  button: {
+    backgroundColor: "#1C6BC8",
+    paddingVertical: 16,
+    paddingHorizontal: 24,
+    borderRadius: 12,
+  },
+  buttonText: {
+    color: "white",
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+});
+
+
+
+
+
+
+
+
+
+
+
+import React, { useState } from "react";
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  Image,
+  ScrollView,
+  ActivityIndicator,
+} from "react-native";
+import { databases, config } from "@/lib/appwrite";
+import { Query } from "appwrite";
+
+interface Flower {
+  $id: string;
+  name: string;
+  description?: string;
+  image_url?: string;
+}
+
+export default function SearchFlowerScreen() {
+  const [searchText, setSearchText] = useState(""); // ✅ เก็บข้อความที่ผู้ใช้พิมพ์
+  const [flowers, setFlowers] = useState<Flower[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleSearch = async () => {
+    if (!searchText.trim()) {
+      setError("⚠️ กรุณากรอกชื่อดอกไม้ที่ต้องการค้นหา");
+      setFlowers([]);
+      return;
+    }
+
+    setLoading(true);
+    setError(null);
+
+    try {
+      const res = await databases.listDocuments(
+        config.databaseId!,
+        config.flowersCollectionId!,
+        [Query.search("name", searchText)] // ✅ ค้นหาโดยใช้ Query.search()
+      );
+
+      if (res.documents.length === 0) {
+        setError("❌ ไม่พบข้อมูลดอกไม้ที่ค้นหา");
+      }
+
+      setFlowers(res.documents as unknown as Flower[]);
+    } catch (err: any) {
+      console.error("❌ Search error:", err);
+      setError("เกิดข้อผิดพลาดในการค้นหา");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <View className="flex-1 bg-white p-4">
+      <Text className="text-2xl font-bold text-pink-500 mb-4">
+        🔍 ค้นหาดอกไม้ตามชื่อ
+      </Text>
+
+      {/* กล่องพิมพ์ข้อความค้นหา */}
+      <View className="flex-row items-center mb-4 border border-gray-300 rounded-full px-3">
+        <TextInput
+          className="flex-1 py-2 px-2 text-gray-800"
+          placeholder="เช่น กุหลาบ, ชบา, บัว..."
+          value={searchText}
+          onChangeText={setSearchText}
+          onSubmitEditing={handleSearch}
+        />
+        <TouchableOpacity
+          onPress={handleSearch}
+          className="bg-pink-500 px-4 py-2 rounded-full ml-2"
+        >
+          <Text className="text-white font-semibold">ค้นหา</Text>
+        </TouchableOpacity>
+      </View>
+
+      {/* แสดงสถานะระหว่างค้นหา */}
+      {loading && (
+        <View className="items-center mt-4">
+          <ActivityIndicator size="large" color="#9333EA" />
+          <Text className="mt-2 text-gray-600">กำลังค้นหา...</Text>
+        </View>
+      )}
+
+      {/* แสดง error ถ้ามี */}
+      {error && !loading && (
+        <Text className="text-red-500 text-center mt-4">{error}</Text>
+      )}
+
+      {/* แสดงผลลัพธ์ */}
+      {!loading && flowers.length > 0 && (
+        <ScrollView className="mt-4">
+          {flowers.map((flower) => (
+            <View
+              key={flower.$id}
+              className="bg-pink-50 border border-pink-100 rounded-3xl p-4 mb-4 shadow-sm"
+            >
+              {flower.image_url ? (
+                <Image
+                  source={{ uri: flower.image_url }}
+                  className="w-full h-48 rounded-2xl mb-3"
+                  resizeMode="cover"
+                />
+              ) : (
+                <View className="w-full h-48 bg-gray-200 rounded-2xl mb-3 items-center justify-center">
+                  <Text className="text-gray-500">ไม่มีรูปภาพ</Text>
+                </View>
+              )}
+
+              <Text className="text-lg font-bold text-gray-800">
+                🌼 {flower.name}
+              </Text>
+              <Text className="text-gray-600 mt-1">
+                {flower.description ? flower.description.slice(0, 100) + "..." : "-"}
+              </Text>
+            </View>
+          ))}
+        </ScrollView>
+      )}
+    </View>
+  );
+}
