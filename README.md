@@ -81,6 +81,24 @@ npx expo start -c
 ```
 
 
+---
+
+## 📺 Project Demonstrations
+
+### 🎥 Full Presentation (10 Minutes)
+For a detailed explanation of the project, system architecture, and a full walkthrough, please watch our comprehensive demonstration on Google Drive:
+
+[▶️ Watch Full Demo Video on Google Drive](https://drive.google.com/file/d/1h0Dm7nofgyb3-SLx0gtbv2Fr1AxQygcn/view?usp=sharing)
+
+---
+
+### 📱 Quick App Preview
+*If you have a short screen recording (MP4/GIF), you can drag and drop it here to show a quick preview of the app interface.*
+
+---
+
+
+
 ## Author
 
 👤 **Nassoreen Langah**
