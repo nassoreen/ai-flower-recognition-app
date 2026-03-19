@@ -15,8 +15,46 @@
 
 ---
 
+## 🌟 Overview
+Identifying plant species often requires expert botanical knowledge. **FloraScan** simplifies this process by providing an automated image recognition system. Whether you are a student, a researcher, or a nature enthusiast, FloraScan helps you explore and learn about the floral world with ease.
 
-## Run Locally
+### Project Objectives:
+* Develop a mobile application capable of identifying **20+ flower species**.
+* Provide detailed botanical data, including scientific names, origins, and care instructions.
+* Utilize AI to promote environmental education and biodiversity awareness.
+
+---
+
+## ✨ Key Features
+* **Real-time Recognition:** Capture photos directly via the in-app camera or upload existing images from the gallery.
+* **Comprehensive Database:** Instant access to information such as:
+    * Common and Scientific names.
+    * Botanical characteristics and habitat.
+    * Benefits and traditional uses.
+* **History Log:** Users can revisit their previously scanned flowers and saved information.
+* **Modern UI/UX:** A clean, intuitive interface built with React Native for a seamless user experience.
+
+---
+
+## 🛠 Tech Stack
+* **Frontend:** React Native (JavaScript/TypeScript)
+* **AI/Machine Learning:** Python, TensorFlow, Keras
+* **Neural Network:** Convolutional Neural Networks (CNN)
+* **Backend & Database:** Firebase (Authentication & Cloud Firestore)
+* **Development Environment:** Visual Studio Code on Windows 11
+
+---
+
+## 🧠 Dataset & AI Model
+The core of FloraScan is a **CNN** model specifically optimized for image classification.
+* **Image Processing:** Includes resizing, normalization, and data augmentation to ensure high accuracy across different lighting conditions.
+* **Training:** The model was trained on a curated dataset of flower images to minimize loss and maximize recognition precision.
+
+---
+
+
+
+## 🚀 Installation
 
 Clone the project
 
