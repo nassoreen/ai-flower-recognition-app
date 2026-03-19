@@ -25,20 +25,19 @@ The version used in this repository:
 - Three.js v0.177.0
 - Skia v2.0.0
 
-## Available Tutorials Season 2
 
 ## Run Locally
 
 Clone the project
 
 ```bash
-git clone https://github.com/Rakha112/react-native-animation.git
+git clone https://github.com/nassoreen/ai-flower-recognition-app.git
 ```
 
 Go to the project directory
 
 ```bash
-cd react-native-animation/season2
+cd ai-flower-recognition-app
 ```
 
 Install dependencies
